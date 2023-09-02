@@ -1,0 +1,29 @@
+{
+  "name": "rasp-web-app",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "./",
+  "scripts": {
+    "-o": "./public/",
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "next start",
+    "export": "next export",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^2.1.0",
+    "@chakra-ui/react": "^2.8.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "eslint": "8.48.0",
+    "eslint-config-next": "13.4.19",
+    "firebase": "^10.3.1",
+    "framer-motion": "^10.16.2",
+    "next": "13.4.19",
+    "react": "18.2.0",
+    "react-apexcharts": "^1.4.1",
+    "react-dom": "18.2.0",
+    "react-feather": "^2.0.10"
+  }
+}
