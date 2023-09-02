@@ -94,7 +94,6 @@ export default function TestPage() {
             }else{
               setLuxColor('#251E1B')
             }
-            console.log(luxColor)
             setLux((prevLux) => [...prevLux, lx])
             setTimestamp_tsl((prevTimestamp_tsl) => [...prevTimestamp_tsl, `${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`])
           }
