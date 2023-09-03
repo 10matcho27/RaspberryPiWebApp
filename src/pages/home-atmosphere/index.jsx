@@ -56,26 +56,19 @@ export default function TestPage() {
       collection(db, "BME680"),
       (snapshot) => {
         snapshot.docChanges().forEach((change) => {
-          if(change.type === "added"){
-            const tmprtr = change.doc.data().Temperature[0]
-            if(tmprtr < 24){
-              setTempColor('#8595FF')
-            }else if(tmprtr > 27){
-              setTempColor('#FF959F')
-            }else {
-              setTempColor('#43D9AF')
-            }
-            setTemp((prevTemp) => [...prevTemp, tmprtr])
-            setHumid((prevHumid) => [...prevHumid, change.doc.data().Humidity[0]])
-            setPres((prevPres) => [...prevPres, change.doc.data().Pressure[0]])
-            setTimestamp_bme((prevTimestamp_bme) => [...prevTimestamp_bme, `${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`])
-            // `${change.doc.data().Timestamp.toDate().getFullYear()}/${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`
+          const tmprtr = change.doc.data().Temperature[0]
+          if(tmprtr < 24.5){
+            setTempColor('#8595FF')
+          }else if(tmprtr > 28){
+            setTempColor('#FF959F')
+          }else {
+            setTempColor('#43D9AF')
           }
-          if(change.type === "removed"){
-            setTemp([])
-            setHumid([])
-            setPres([])
-          }
+          setTemp((prevTemp) => [...prevTemp, tmprtr])
+          setHumid((prevHumid) => [...prevHumid, change.doc.data().Humidity[0]])
+          setPres((prevPres) => [...prevPres, change.doc.data().Pressure[0]])
+          setTimestamp_bme((prevTimestamp_bme) => [...prevTimestamp_bme, `${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`])
+          // `${change.doc.data().Timestamp.toDate().getFullYear()}/${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`
         },
       (error) => {
         console.log(error)
@@ -85,22 +78,16 @@ export default function TestPage() {
       collection(db, "TSL2572"),
       (snapshot) => {
         snapshot.docChanges().forEach((change) => {
-          if(change.type === "added"){
-            const lx = parseInt(change.doc.data().Lux[0])
-            if(lx > 250){
-              setLuxColor('#FFDAD1')
-            }else if(lx > 5){
-              setLuxColor('#301E5A')
-            }else{
-              setLuxColor('#251E1B')
-            }
-            setLux((prevLux) => [...prevLux, lx])
-            setTimestamp_tsl((prevTimestamp_tsl) => [...prevTimestamp_tsl, `${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`])
+          const lx = parseInt(change.doc.data().Lux[0])
+          if(lx > 250){
+            setLuxColor('#FFDAD1')
+          }else if(lx > 3){
+            setLuxColor('#301E5A')
+          }else{
+            setLuxColor('#251E1B')
           }
-          if(change.type === "removed"){
-            setLux([])
-            setTimestamp([])
-          }
+          setLux((prevLux) => [...prevLux, lx])
+          setTimestamp_tsl((prevTimestamp_tsl) => [...prevTimestamp_tsl, `${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`])
         },
       (error) => {
         console.log(error)
