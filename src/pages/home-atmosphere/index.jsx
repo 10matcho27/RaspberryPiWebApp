@@ -95,49 +95,95 @@ export default function TestPage() {
     })
   }, [])
 
-  return (
+  return(
     <>
-      <Text fontSize={20} color='tomato' as='b'>
-          Update values every 30 seconds.
-      </Text>
-      <Box w="100%" h={height / 30}>
-      </Box>
       <Center>
-        <Box>
-          <Flex>
-            <CreateAreaChart
-              data = {temp}
-              timestamp = {timestamp_bme}
-              name = "Temperature"
-              width = {width}
-              height = {height}
-              color = {tempColor}/>
-            <CreateAreaChart
-              data = {lux}
-              timestamp = {timestamp_tsl}
-              name = "Lux"
-              width = {width}
-              height = {height}
-              color = {luxColor}/>
-          </Flex>
-          <Flex>
-            <CreateAreaChart
-              data = {pres}
-              timestamp = {timestamp_bme}
-              name = "Pressure"
-              width = {width}
-              height = {height}
-              color = '#BEC5FF'/>
-            <CreateAreaChart
-              data = {humid}
-              timestamp = {timestamp_bme}
-              name = "Humidity"
-              width = {width}
-              height = {height}
-              color = '#839EFF'/>
-          </Flex>
-        </Box>
+        <Text color='tomato' as='b'>
+          Update values every 48 seconds.
+        </Text>
+      </Center>
+      <Box w="100%" h={height / 30}></Box>
+      <Center>
+        <CreateAreaChart
+          data = {temp}
+          timestamp = {timestamp_bme}
+          name = "Temperature"
+          width = {width}
+          height = {height}
+          color = {tempColor}/>
+      </Center>
+      <Center>
+        <CreateAreaChart
+          data = {lux}
+          timestamp = {timestamp_tsl}
+          name = "Lux"
+          width = {width}
+          height = {height}
+          color = {luxColor}/>
+      </Center>
+      <Center>
+        <CreateAreaChart
+          data = {pres}
+          timestamp = {timestamp_bme}
+          name = "Pressure"
+          width = {width}
+          height = {height}
+          color = '#BEC5FF'/>
+      </Center>
+      <Center>
+        <CreateAreaChart
+          data = {humid}
+          timestamp = {timestamp_bme}
+          name = "Humidity"
+          width = {width}
+          height = {height}
+          color = '#839EFF'/>
       </Center>
     </>
-  );
+  )
+  // return (
+  //   <>
+  //     <Text fontSize={20} color='tomato' as='b'>
+  //         Update values every 30 seconds.
+  //     </Text>
+  //     <Box w="100%" h={height / 30}>
+  //     </Box>
+  //     <Center>
+  //       <Box>
+  //         <Flex>
+  //           <CreateAreaChart
+  //             data = {temp}
+  //             timestamp = {timestamp_bme}
+  //             name = "Temperature"
+  //             width = {width}
+  //             height = {height}
+  //             color = {tempColor}/>
+  //           <CreateAreaChart
+  //             data = {lux}
+  //             timestamp = {timestamp_tsl}
+  //             name = "Lux"
+  //             width = {width}
+  //             height = {height}
+  //             color = {luxColor}/>
+  //         </Flex>
+  //         <Flex>
+  //           <CreateAreaChart
+  //             data = {pres}
+  //             timestamp = {timestamp_bme}
+  //             name = "Pressure"
+  //             width = {width}
+  //             height = {height}
+  //             color = '#BEC5FF'/>
+  //           <CreateAreaChart
+  //             data = {humid}
+  //             timestamp = {timestamp_bme}
+  //             name = "Humidity"
+  //             width = {width}
+  //             height = {height}
+  //             color = '#839EFF'/>
+  //         </Flex>
+  //       </Box>
+  //     </Center>
+  //   </>
+  // );
 }

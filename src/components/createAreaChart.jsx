@@ -57,7 +57,7 @@ const CreateAreaChart = (props) => {
     // console.log({height, width})
     return (
         <>
-            <Chart options={data.options} series={data.series} type="area" width={props.width / 2.5} height={props.height / 2.5}/>
+            <Chart options={data.options} series={data.series} type="area" width={props.width / 1.5} height={props.height / 2.5}/>
         </>
     );
 }
