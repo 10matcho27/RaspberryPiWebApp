@@ -1,8 +1,5 @@
 import dynamic from 'next/dynamic'
-import GetWindowSize from '@/src/components/getWindowSize';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
-import { useEffect, useState } from "react";
-import { Center, Square, Circle } from '@chakra-ui/react'
 
 const CreateAreaChart = (props) => {
     const data = {
@@ -12,10 +9,13 @@ const CreateAreaChart = (props) => {
                 name: props.name,
                 tickAmount: 10,
             },
+            // yaxis: {
+            //     min: props.min
+            // },
             title: {
                 text: props.name + ' in Time Series',
                 align: 'left',
-                offsetX: 14
+                offsetX: 14,
             },
             zoom: {
                 type: 'x',
@@ -51,7 +51,7 @@ const CreateAreaChart = (props) => {
         },
         series: [{
             name: props.name,
-            data: props.data
+            data: props.data,
         }],
     }
     // console.log({height, width})

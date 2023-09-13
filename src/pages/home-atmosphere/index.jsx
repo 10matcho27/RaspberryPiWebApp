@@ -6,7 +6,8 @@ import { Spacer, Text } from '@chakra-ui/react'
 import { Center, Flex, Square, Circle, Box } from '@chakra-ui/react'
 import CreateAreaChart from "@/src/components/createAreaChart";
 import GetWindowSize from "@/src/components/getWindowSize";
-import CreateColumnChart from "@/src/components/createColumnChart";
+import DigitalDateTime from "@/src/components/disitalDateTime";
+// import CreateColumnChart from "@/src/components/createColumnChart";
 
 export default function TestPage() {
   // const [data, setData] = useState([]); // データを格納するためのstate
@@ -16,9 +17,10 @@ export default function TestPage() {
   const [timestamp_tsl, setTimestamp_tsl] = useState([])
   const [pres, setPres]           = useState([])
   const [lux, setLux]             = useState([])
-  const {height, width} = GetWindowSize();
+  const {height, width} = GetWindowSize()
   const [tempColor, setTempColor] = useState('#43D9AF')
   const [luxColor, setLuxColor] = useState('#251E1B')
+  const updateSec = 30
 
   //! 毎回すべての変更をとってくるので帯域消費がやばい
   // const q = query(collection(db, "BME680"));
@@ -51,6 +53,11 @@ export default function TestPage() {
       useFetchStreams: false,
     })
     console.log("connected to Firestore DB", db)
+
+    // setInterval(() => {
+    //   setPassedSec(prev => prev + 1)
+    //   console.log(passedSec)
+    // }, 1000)
 
     const unsub_bme680 = onSnapshot(
       collection(db, "BME680"),
@@ -107,11 +114,20 @@ export default function TestPage() {
     })
   }, [])
 
+
   return(
     <>
+      <Center as='b' >
+        <DigitalDateTime/>
+      </Center>
       <Center>
         <Text color='tomato' as='b'>
-          Update values every 48 seconds.
+          Previous update: {timestamp_bme[timestamp_bme.length - 1]}
+        </Text>
+      </Center>
+      <Center>
+        <Text as='sub'>
+          update each {updateSec} seconds
         </Text>
       </Center>
       <Box w="100%" h={height / 30}></Box>
