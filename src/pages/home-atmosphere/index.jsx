@@ -64,10 +64,16 @@ export default function TestPage() {
           }else {
             setTempColor('#43D9AF')
           }
-          setTemp((prevTemp) => [...prevTemp, tmprtr])
-          setHumid((prevHumid) => [...prevHumid, change.doc.data().Humidity[0]])
-          setPres((prevPres) => [...prevPres, change.doc.data().Pressure[0]])
-          setTimestamp_bme((prevTimestamp_bme) => [...prevTimestamp_bme, `${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`])
+          if (change.type === "added"){
+            setTemp((prevTemp) => [...prevTemp, tmprtr])
+            setHumid((prevHumid) => [...prevHumid, change.doc.data().Humidity[0]])
+            setPres((prevPres) => [...prevPres, change.doc.data().Pressure[0]])
+            setTimestamp_bme((prevTimestamp_bme) => [...prevTimestamp_bme, `${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`])
+          }
+          // setTemp((prevTemp) => [...prevTemp, tmprtr])
+          // setHumid((prevHumid) => [...prevHumid, change.doc.data().Humidity[0]])
+          // setPres((prevPres) => [...prevPres, change.doc.data().Pressure[0]])
+          // setTimestamp_bme((prevTimestamp_bme) => [...prevTimestamp_bme, `${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`])
           // `${change.doc.data().Timestamp.toDate().getFullYear()}/${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`
         },
       (error) => {
@@ -81,13 +87,19 @@ export default function TestPage() {
           const lx = parseInt(change.doc.data().Lux[0])
           if(lx > 250){
             setLuxColor('#FFDAD1')
+          }else if(lx > 120){
+            setLuxColor('#FFE4B5')
           }else if(lx > 3){
             setLuxColor('#301E5A')
           }else{
             setLuxColor('#251E1B')
           }
-          setLux((prevLux) => [...prevLux, lx])
-          setTimestamp_tsl((prevTimestamp_tsl) => [...prevTimestamp_tsl, `${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`])
+          if (change.type === "added"){
+            setLux((prevLux) => [...prevLux, lx])
+            setTimestamp_tsl((prevTimestamp_tsl) => [...prevTimestamp_tsl, `${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`])
+          }
+          // setLux((prevLux) => [...prevLux, lx])
+          // setTimestamp_tsl((prevTimestamp_tsl) => [...prevTimestamp_tsl, `${change.doc.data().Timestamp.toDate().getMonth()+1}/${change.doc.data().Timestamp.toDate().getDate()} ${change.doc.data().Timestamp.toDate().getHours()}:${change.doc.data().Timestamp.toDate().getMinutes()}:${change.doc.data().Timestamp.toDate().getSeconds()}`])
         },
       (error) => {
         console.log(error)
