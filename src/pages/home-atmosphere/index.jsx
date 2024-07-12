@@ -20,7 +20,7 @@ export default function TestPage() {
   const {height, width} = GetWindowSize()
   const [tempColor, setTempColor] = useState('#43D9AF')
   const [luxColor, setLuxColor] = useState('#251E1B')
-  const updateSec = 30
+  const updateSec = 45
 
   //! 毎回すべての変更をとってくるので帯域消費がやばい
   // const q = query(collection(db, "BME680"));
